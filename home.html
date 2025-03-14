@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위듀</title>
+    <style>
+        body {
+            max-width: 1200px;
+            /*좌우 최대 길이*/
+            margin: 20px auto;
+            /*auto는 가운데 정렬을 의미*/
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .buttons {
+            display: flex;
+        }
+
+        .top_button {
+            margin-left: 10px;
+            /* 버튼 간의 간격 */
+            padding: 10px 15px;
+            background-color: #6e726f;
+            /* 버튼 색 */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+
+        }
+
+        .top_button:hover {
+            background-color: #989998;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>WIDU</h1>
+        <div class="buttons">
+            <button class="top_button">홈</button>
+            <button class="top_button">게시</button>
+            <button class="top_button">캘린더</button>
+            <button class="top_button">채팅</button>
+            <button class="top_button">마이페이지</button>
+        </div>
+    </div>
+</body>
+
+</html>

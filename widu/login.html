@@ -9,9 +9,12 @@
         body {
             display: flex;
             flex-direction: column;
-            align-items: center; /* 가로 중앙 정렬 */
-            justify-content: center; /* 세로 중앙 정렬 */
-            min-height: 80vh; /* 화면 높이의 80%만 차지 */
+            align-items: center;
+            /* 가로 중앙 정렬 */
+            justify-content: center;
+            /* 세로 중앙 정렬 */
+            min-height: 80vh;
+            /* 화면 높이의 80%만 차지 */
             max-width: 600px;
             margin: auto;
             padding: 20px;
@@ -20,7 +23,8 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 8vh;
-            position: relative; /* 로고 위치 기준이 됨 */
+            position: relative;
+            /* 로고 위치 기준이 됨 */
         }
 
         .id_pw {
@@ -73,10 +77,15 @@
 
         .checkbox-container {
             display: flex;
-            align-items: center; /* 체크박스를 텍스트와 수평으로 정렬 */
-            justify-content: flex-start; /* 왼쪽 정렬 */
-            width: 100%; /* 부모 요소 너비에 맞게 */
-            margin-top: 10px; /* 적당한 여백 */
+            align-items: center;
+            /* 체크박스를 텍스트와 수평으로 정렬 */
+            justify-content: flex-start;
+            /* 왼쪽 정렬 */
+            width: 100%;
+            /* 부모 요소 너비에 맞게 */
+            margin-top: 10px;
+            /* 적당한 여백 */
+            margin-bottom: 5px;
             margin-left: 305px;
         }
 
@@ -86,14 +95,26 @@
             height: 20px;
             border-radius: 50%;
             color: rgb(109, 227, 245);
-            margin-right: 10px; /* 체크박스와 텍스트 사이에 간격 추가 */
+            margin-right: 10px;
+            /* 체크박스와 텍스트 사이에 간격 추가 */
         }
-        
+
         .checkbox-label {
             color: #2e2d2d;
             font-size: 16px;
         }
-        
+        #b_button{
+            display: flex;
+        }
+        .bottom_button{
+            margin: 3px;
+            margin-top: 10px;
+            border: none;
+            background-color: white;
+        }
+        .bottom_button:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -107,14 +128,20 @@
         <input class="id_pw" style="margin-bottom: 20px;" placeholder="비밀번호를 입력하세요." onfocus="this.placeholder=''"
             onblur="this.placeholder='비밀번호를 입력하세요.'" type="password" name="user_pw"><br>
     </form>
-    
+
     <!-- 체크박스를 왼쪽에 정렬하기 위한 div -->
     <div class="checkbox-container">
         <input id="auto_login_checkbox" type="checkbox">
         <label class="checkbox-label" for="auto_login_checkbox">자동 로그인</label>
     </div>
-    
     <input id="login_button" type="button" value="로그인">
+    <div id="b_button">
+        <input class="bottom_button"  type="button" value="아이디 찾기">
+        <input class="bottom_button"  type="button" value="비밀번호 찾기">
+        <input class="bottom_button"  type="button" value="회원가입">
+    </div>
+
+
 </body>
 
 </html>

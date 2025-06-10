@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #e8f4ff;
+}
+
+/* 캘린더 영역 */
+.calendar-container {
+    padding: 20px;
+    max-width: 850px; /* 크기 축소 */
+    margin: 0 auto;
+}
+
+/* 월 헤더 */
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.month-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+.month-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 탭 */
+.calendar-tabs {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: center;
+}
+
+.tab {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px 15px 0 0;
+    margin-right: 8px;
+}
+
+.tab.active {
+    background-color: white;
+    border-bottom: 2px solid white;
+}
+
+/* 캘린더 테이블 */
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    /*border-radius: 12px;*/
+    overflow: hidden;
+}
+
+.calendar-table thead th {
+    height: 40px; /* 요일 줄 높이 감소 */
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #444;
+    border: 1px solid #ddd;
+}
+
+/* 일요일 빨간색, 토요일 파란색 */
+.calendar-table thead th:first-child {
+    color: red;
+}
+.calendar-table thead th:last-child {
+    color: #3b82f6;
+}
+
+.calendar-table td {
+    border: 1px solid #eee;
+    width: 14.2%;
+    height: 95px;
+    vertical-align: top;
+    padding: 4px;
+    background-color: #fff;
+    transition: background-color 0.2s ease;
+    border-radius: 8px;
+}
+
+.calendar-table td:hover {
+    background-color: #f5faff;
+}
+
+.cell {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 10px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.cell-top {
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.cell-bottom {
+    font-size: 12px;
+    color: #555;
+    word-break: break-word;
+}
+
+/* 이전/다음 달 날짜 흐리게 */
+td.dimmed .cell-top {
+    color: #bbb;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>WIDU - 게시물 작성</title>
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/post.css" />
+</head>
+<body>
+
+<!-- 상단바 -->
+<div id="header-container"></div>
+
+<!-- 본문 -->
+<main class="main-container">
+    <section class="post-section">
+        <div class="mood-input-area">
+            <label for="mood">제목</label>
+            <input type="text" id="mood" placeholder="제목을 입력해주세요." />
+        </div>
+
+        <div class="content-input-area">
+            <label for="content">하루 일기 ✏️</label>
+            <textarea id="content" placeholder="오늘 하루는 어땠나요?"></textarea>
+        </div>
+
+        <div class="image-upload-container">
+            <label class="upload-box">
+                + 사진 추가
+                <input type="file" accept="image/*" multiple hidden onchange="previewImages(event)" />
+            </label>
+            <div class="image-preview-container" id="image-preview"></div>
+        </div>
+
+        <button class="submit-btn">게시</button>
+    </section>
+</main>
+
+<!-- header + chat -->
+<script>
+    fetch('header.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            const script = document.createElement('script');
+            script.src = 'js/chat.js';
+            script.onload = function () {
+                if (typeof initChatPopup === 'function') {
+                    initChatPopup();
+                }
+            };
+            document.body.appendChild(script);
+        });
+
+    function previewImages(event) {
+        const container = document.getElementById("image-preview");
+        container.innerHTML = "";
+        const files = event.target.files;
+
+        Array.from(files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.className = "square-image";
+                container.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+</script>
+
+<!-- 이미지 업로드 -->
+<script>
+    function previewImages(event) {
+        const files = Array.from(event.target.files);
+        const previewContainer = document.getElementById("image-preview");
+
+        files.forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const wrapper = document.createElement("div");
+                wrapper.className = "image-wrapper";
+
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.className = "square-image";
+
+                const delBtn = document.createElement("button");
+                delBtn.textContent = "×";
+                delBtn.className = "delete-btn";
+                delBtn.onclick = () => wrapper.remove();
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(delBtn);
+                previewContainer.appendChild(wrapper);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // 입력 초기화 → 같은 이미지 다시 선택해도 onchange 작동하게
+        event.target.value = "";
+    }
+</script>
+
+</body>
+</html>

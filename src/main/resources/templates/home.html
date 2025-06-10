@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>WIDU - 홈</title>
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/couple_info.css" />
+
+</head>
+<body>
+<!-- 상단바 -->
+<div id="header-container"></div>
+
+<!-- 본문 -->
+<main class="main-container">
+    <!-- 왼쪽 영역 -->
+    <section class="left-section">
+        <div class="cover-box" onclick="openPopup()">
+        <div class="cover-img-wrapper">
+                <img src="images/couple.jpg" alt="커플 커버" class="couple-img"/>
+                <div class="d-day">💕 D+100</div>
+            </div>
+        </div>
+
+        <div class="add-post" onclick="location.href='post.html'">＋ 게시물 추가</div>
+        <div class="feed">
+            <div class="user-id">@id</div>
+            <div class="feed-box">
+                <img src="images/feed.jpg" alt="피드 이미지" class="feed-img"/>
+                <p class="feed-text">셀카 한장~</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 오른쪽 영역 -->
+    <section class="right-section">
+        <div class="schedule-title">오늘의 일정</div>
+        <div class="schedule-box">✔ 커플 데이트</div>
+        <div class="schedule-title">내일의 일정</div>
+        <div class="schedule-box">✔ 영화 보기</div>
+    </section>
+</main>
+
+<!-- 추가: 커플 정보 수정 팝업 HTML -->
+<div id="couple-popup" class="popup-overlay hidden">
+    <div class="popup-box">
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+
+        <h2>커플 정보 수정</h2>
+
+        <div class="form-group">
+            <label for="couple-name">커플 이름</label>
+            <input type="text" id="couple-name" placeholder="커플 이름을 입력하세요" />
+        </div>
+
+        <div class="form-group">
+            <label for="cover-img">커버 이미지</label>
+            <input type="file" id="cover-img" accept="image/*" />
+        </div>
+
+        <div class="form-group">
+            <label for="d-day-name">디데이 이름</label>
+            <input type="text" id="d-day-name" placeholder="예: 첫 만남" />
+        </div>
+
+        <div class="form-group">
+            <label for="d-day-type">형식</label>
+            <select id="d-day-type">
+                <option value="d+">D+</option>
+                <option value="d-">D-</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="d-day-date">날짜</label>
+            <input type="date" id="d-day-date" />
+        </div>
+
+        <button class="add-btn">+ 디데이 추가</button>
+        <button class="save-btn">저장</button>
+    </div>
+</div>
+
+<!-- header 불러오기 -->
+<script>
+    fetch('header.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+
+            const script = document.createElement('script');
+            script.src = 'js/chat.js';
+            script.onload = function () {
+                // chat.js 로드 완료 후 함수 호출
+                if (typeof initChatPopup === 'function') {
+                    initChatPopup();
+                }
+            };
+            document.body.appendChild(script);
+        });
+</script>
+
+<!--커플 정보 수정 팝업-->
+<script>
+    function openPopup() {
+        document.getElementById("couple-popup").classList.remove("hidden");
+    }
+
+    function closePopup() {
+        document.getElementById("couple-popup").classList.add("hidden");
+    }
+</script>
+
+<!-- 오른쪽 영역 스크롤 -->
+<script>
+    const rightSection = document.querySelector('.right-section');
+    let currentTop = 0;
+    let targetTop = 0;
+
+    // 애니메이션 루프
+    function animate() {
+        currentTop += (targetTop - currentTop) * 0.9; // 점진적 이동
+        rightSection.style.transform = `translateY(${currentTop}px)`;
+        requestAnimationFrame(animate);
+    }
+
+    // 스크롤에 따라 목표 위치 설정
+    function updateTargetTop() {
+        const windowScroll = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const sectionOffset = rightSection.offsetTop;
+        const sectionHeight = rightSection.offsetHeight;
+
+        // 가운데에 오도록 목표 위치 계산
+        targetTop = windowScroll + windowHeight / 2 - sectionHeight / 2 - sectionOffset;
+    }
+
+    window.addEventListener('scroll', updateTargetTop);
+
+    // 초기에 한 번 계산
+    updateTargetTop();
+    animate(); // 애니메이션 시작
+</script>
+
+</body>
+</html>

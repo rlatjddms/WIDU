@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>WIDU - 캘린더</title>
+    <link rel="stylesheet" href="css/calendar.css" />
+    <link rel="stylesheet" href="css/header.css" />
+</head>
+<body>
+<!-- 상단바 -->
+<div id="header-container"></div>
+
+<!-- 캘린더 영역 -->
+<main class="calendar-container">
+    <!-- 월 변경 헤더 -->
+    <div class="calendar-header">
+        <button class="month-btn">◀</button>
+        <div class="month-title">2025년 3월</div>
+        <button class="month-btn">▶</button>
+    </div>
+
+    <!-- 탭 -->
+    <div class="calendar-tabs">
+        <button class="tab active">일정</button>
+        <button class="tab">가계부</button>
+    </div>
+
+    <!-- 캘린더 테이블 -->
+    <table class="calendar-table">
+        <thead>
+        <tr>
+            <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- JS에서 날짜 자동 생성 예정 -->
+        <!-- 지금은 샘플 6행 채움 -->
+        <tr>
+            <td><div class="cell"><div class="cell-top">1</div><div class="cell-bottom"></div></div></td>
+            <td><div class="cell"><div class="cell-top">2</div><div class="cell-bottom"></div></div></td>
+            <td><div class="cell"><div class="cell-top">3</div><div class="cell-bottom"></div></div></td>
+            <td><div class="cell"><div class="cell-top">4</div><div class="cell-bottom"></div></div></td>
+            <td><div class="cell"><div class="cell-top">5</div><div class="cell-bottom"></div></div></td>
+            <td><div class="cell"><div class="cell-top">6</div><div class="cell-bottom"></div></div></td>
+            <td><div class="cell"><div class="cell-top">7</div><div class="cell-bottom"></div></div></td>
+        </tr>
+        <!-- 이하 생략: 총 6행 필요 -->
+        </tbody>
+    </table>
+</main>
+
+<script src="js/calendar.js"></script>
+
+<!-- header 불러오기 -->
+<script>
+    fetch('header.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+
+            const script = document.createElement('script');
+            script.src = 'js/chat.js';
+            script.onload = function () {
+                // chat.js 로드 완료 후 함수 호출
+                if (typeof initChatPopup === 'function') {
+                    initChatPopup();
+                }
+            };
+            document.body.appendChild(script);
+        });
+</script>
+
+</body>
+</html>

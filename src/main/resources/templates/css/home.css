@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #e8f4ff;
+}
+
+/* 전체 레이아웃 */
+.main-container {
+    display: flex;
+    padding: 20px 400px;
+    gap: 40px;
+    min-height: 100vh; /* 필수! */
+}
+
+/* 왼쪽 영역 */
+.left-section {
+    flex: 2.5;
+}
+
+.cover-box {
+    background-color: #ffffff;
+    padding: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    overflow: hidden; /* 이미지가 박스 밖으로 넘치지 않게 */
+}
+
+.cover-img-wrapper {
+    position: relative;
+}
+
+.couple-img {
+    width: 100%; /* 가로 길이 꽉 차게 */
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.d-day {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: rgba(255, 255, 255, 0.5); /* 반투명 흰 배경 */
+    color: #000;
+    padding:8px 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.add-post {
+    margin: 16px 0;
+    padding: 12px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.feed {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.user-id {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.feed-box {
+    margin-top: 10px;
+}
+
+.feed-img {
+    width: 100%;
+}
+
+.feed-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* 오른쪽 영역 */
+.right-section {
+    flex: 1;
+    position: relative; /* 기존 sticky 제거 */
+    transition: transform 0.2s ease-out; /* 부드러운 이동 */
+    top: 50%;
+    transform: translateY(-50%);
+    align-self: start;
+}
+
+.schedule-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.schedule-box {
+    background-color: white;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}

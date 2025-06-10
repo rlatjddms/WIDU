@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>WIDU - 마이페이지</title>
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/mypage.css" />
+</head>
+<body>
+<div id="header-container"></div>
+
+<main class="mypage-container">
+    <!-- 탭 버튼 -->
+    <div class="tab-buttons">
+        <button class="tab-btn active" onclick="showTab('me')">👤 나</button>
+        <button class="tab-btn" onclick="showTab('partner')">💑 연인</button>
+        <button class="tab-btn" onclick="showTab('all')">전체 피드</button>
+    </div>
+
+    <!-- 탭 내용 -->
+    <section id="me" class="tab-content active">
+        <div class="profile-box">
+            <img src="images/profile.png" class="profile-img" alt="내 프로필"/>
+            <div class="info">
+                <div class="name">이름</div>
+                <div class="email">user@example.com</div>
+                <button class="edit-btn">회원정보 수정</button>
+            </div>
+        </div>
+        <div class="feed-grid">
+            <!-- 피드 반복 -->
+            <div class="feed-item"><img src="images/feed.jpg" /><p>내 피드 내용</p></div>
+            <div class="feed-item"><img src="images/feed.jpg" /><p>...</p></div>
+        </div>
+    </section>
+
+    <section id="partner" class="tab-content">
+        <div class="profile-box">
+            <img src="images/profile.png" class="profile-img" alt="상대 프로필"/>
+            <div class="info">
+                <div class="name">연인이름</div>
+                <div class="email">partner@email.com</div>
+            </div>
+        </div>
+        <div class="feed-grid">
+            <div class="feed-item"><img src="images/feed.jpg" /><p>상대 피드 내용</p></div>
+        </div>
+    </section>
+
+    <section id="all" class="tab-content">
+        <div class="feed-grid">
+            <div class="feed-item"><img src="images/feed.jpg" /><p>전체 피드 내용</p></div>
+        </div>
+    </section>
+</main>
+
+<script>
+    fetch('header.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            const script = document.createElement('script');
+            script.src = 'js/chat.js';
+            script.onload = () => {
+                if (typeof initChatPopup === 'function') initChatPopup();
+            };
+            document.body.appendChild(script);
+        });
+
+    function showTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(sec => sec.classList.remove('active'));
+        document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+</body>
+</html>

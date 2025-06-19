@@ -1,28 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <!-- 상단바 -->
-<header class="navbar">
+<header class="navbar" th:fragment="header">
     <div class="logo" onclick="location.href='home.html'">
-        <img src="images/logo.png" alt="WIDU 로고" class="logo-img" />
+        <img th:src="@{/images/logo.png}" alt="WIDU 로고" class="logo-img" />
     </div>
     <nav class="menu">
-        <button onclick="location.href='home.html'">🏠</button>
         <button onclick="location.href='post.html'">➕</button>
         <button onclick="location.href='calendar.html'">📅</button>
         <button id="chat-toggle-btn">💬</button>
         <button onclick="location.href='mypage.html'">👤</button>
     </nav>
-</header>
 
-<!-- 채팅 팝업창 -->
-<div class="chat-popup" id="chat-popup">
-    <div class="chat-header">
-        <span>💬 채팅</span>
-        <button class="close-btn" id="chat-close-btn">×</button>
+    <!-- 채팅 팝업창 -->
+    <div class="chat-popup" id="chat-popup">
+        <div class="chat-header">
+            <span>💬 채팅</span>
+            <button class="close-btn" id="chat-close-btn">×</button>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="message left">안녕하세요!</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="메시지를 입력하세요..." />
+            <button id="chat-send-btn">전송</button>
+        </div>
     </div>
-    <div class="chat-body" id="chat-body">
-        <div class="message left">안녕하세요!</div>
-    </div>
-    <div class="chat-input-area">
-        <input type="text" id="chat-input" placeholder="메시지를 입력하세요..." />
-        <button id="chat-send-btn">전송</button>
-    </div>
-</div>
+
+    <!-- chat.js 스크립트 포함 -->
+    <script th:src="@{/js/chat.js}"></script>
+</header>

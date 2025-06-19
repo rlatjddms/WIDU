@@ -37,3 +37,5 @@ function initChatPopup() {
         }
     });
 }
+
+document.addEventListener("DOMContentLoaded", initChatPopup);

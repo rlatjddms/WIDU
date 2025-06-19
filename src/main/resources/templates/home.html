@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>WIDU - 홈</title>
-    <link rel="stylesheet" href="css/home.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/couple_info.css" />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/couple_info.css}" />
 
 </head>
 <body>
 <!-- 상단바 -->
-<div id="header-container"></div>
+<header th:replace="~{header :: header}"></header>
 
 <!-- 본문 -->
 <main class="main-container">
@@ -19,7 +19,7 @@
     <section class="left-section">
         <div class="cover-box" onclick="openPopup()">
         <div class="cover-img-wrapper">
-                <img src="images/couple.jpg" alt="커플 커버" class="couple-img"/>
+                <img th:src="@{/images/couple.jpg}" alt="커플 커버" class="couple-img"/>
                 <div class="d-day">💕 D+100</div>
             </div>
         </div>
@@ -27,11 +27,11 @@
         <div class="add-post" onclick="location.href='post.html'">＋ 게시물 추가</div>
         <div class="feed">
             <div class="user-info">
-                <img src="images/profile.png" alt="프로필 이미지" class="profile-img" />
+                <img th:src="@{/images/profile.png}" alt="프로필 이미지" class="profile-img" />
                 <div class="user-id">username</div>
             </div>
             <div class="feed-box">
-                <img src="images/feed.jpg" alt="피드 이미지" class="feed-img"/>
+                <img th:src="@{/images/feed.jpg}" alt="피드 이미지" class="feed-img"/>
                 <p class="feed-text">셀카 한장~</p>
             </div>
         </div>
@@ -85,25 +85,6 @@
         <button class="save-btn">저장</button>
     </div>
 </div>
-
-<!-- header 불러오기 -->
-<script>
-    fetch('header.html')
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById('header-container').innerHTML = data;
-
-            const script = document.createElement('script');
-            script.src = 'js/chat.js';
-            script.onload = function () {
-                // chat.js 로드 완료 후 함수 호출
-                if (typeof initChatPopup === 'function') {
-                    initChatPopup();
-                }
-            };
-            document.body.appendChild(script);
-        });
-</script>
 
 <!--커플 정보 수정 팝업-->
 <script>

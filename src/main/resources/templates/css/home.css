@@ -66,9 +66,23 @@ body {
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 이미지와 아이디 간격 */
+    margin-bottom: 15px;
+}
+
+.profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .user-id {
     font-weight: bold;
-    margin-bottom: 15px;
+    font-size: 15px;
 }
 
 .feed-box {

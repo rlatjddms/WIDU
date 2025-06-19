@@ -4,6 +4,14 @@ body {
     background-color: #e8f4ff;
 }
 
+.vertical-center-wrapper {
+    display: flex;
+    justify-content: center;     /* 가로 가운데 */
+    align-items: center;         /* 세로 가운데 */
+    height: calc(100vh - 70px);  /* 뷰포트 전체 높이 */
+    box-sizing: border-box;
+}
+
 .main-container {
     display: flex;
     justify-content: center;
@@ -42,7 +50,7 @@ textarea,
 }
 
 textarea {
-    height: 150px;
+    height: 180px;
     resize: vertical;
 }
 
@@ -57,9 +65,9 @@ textarea {
 /* 이미지 업로드 */
 .image-upload-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     align-items: flex-start;
 }
 
@@ -78,18 +86,25 @@ textarea {
     align-items: center;
     box-sizing: border-box;
     position: relative;
+    flex: 0 0 auto;
 }
 
 .image-preview-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;             /* 줄바꿈 없이 가로로 쭉 */
     gap: 10px;
+    overflow-x: auto;              /* 가로 스크롤 가능하게 */
+    padding-bottom: 8px;
+    scrollbar-width: thin;         /* Firefox용 얇은 스크롤 */
+    -webkit-overflow-scrolling: touch; /* 모바일 부드러운 스크롤 */
 }
+
 
 .image-wrapper {
     position: relative;
     width: 150px;
     height: 150px;
+    flex: 0 0 auto;
 }
 
 .square-image {
